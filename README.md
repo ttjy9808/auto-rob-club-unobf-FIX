@@ -876,33 +876,4 @@ rejoining = true
             end
             wait(3)
             rejoining = false
-        else
-        local cmdlp = game.Players.LocalPlayer
-rejoining = true
-            local Decision = "any"
-            local GUIDs = {}
-            local maxPlayers = 0
-            local pagesToSearch = 100
-            if Decision == "fast" then pagesToSearch = 5 end
-            local Http = game:GetService("HttpService"):JSONDecode(game:HttpGet("https://games.roblox.com/v1/games/"..game.PlaceId.."/servers/Public?sortOrder=Asc&limit=100&cursor="))
-            for i = 1,pagesToSearch do
-                for i,v in pairs(Http.data) do
-                    if v.playing ~= v.maxPlayers and v.id ~= game.JobId then
-                        maxPlayers = v.maxPlayers
-                        table.insert(GUIDs, {id = v.id, users = v.playing})
-                    end
-                end
-                if Http.nextPageCursor ~= null then Http = game:GetService("HttpService"):JSONDecode(game:HttpGet("https://games.roblox.com/v1/games/"..game.PlaceId.."/servers/Public?sortOrder=Asc&limit=100&cursor="..Http.nextPageCursor)) else break end
-            end
-            if Decision == "any" or Decision == "fast" then
-                game:GetService("TeleportService"):TeleportToPlaceInstance(game.PlaceId, GUIDs[math.random(1,#GUIDs)].id, cmdlp)
-            elseif Decision == "smallest" then
-                game:GetService("TeleportService"):TeleportToPlaceInstance(game.PlaceId, GUIDs[#GUIDs].id, cmdlp)
-            elseif Decision == "largest" then
-                game:GetService("TeleportService"):TeleportToPlaceInstance(game.PlaceId, GUIDs[1].id, cmdlp)
-            else
-                print("")
-            end
-            wait(3)
-            rejoining = false
         end
