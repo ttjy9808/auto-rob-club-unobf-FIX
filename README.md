@@ -1,5 +1,5 @@
-if	workspace.Heists.Club:FindFirstChild("Level1") or workspace.Heists.Club:FindFirstChild("Level2") or	workspace.Heists.Club:FindFirstChild("Level3") then 
 repeat wait() until game:IsLoaded()
+if workspace.Heists.Club:FindFirstChild("Level1") or workspace.Heists.Club:FindFirstChild("Level2") or	workspace.Heists.Club:FindFirstChild("Level3") then 
 task.wait(10)
 loadstring(game:HttpGet("https://raw.githubusercontent.com/Deni210/require/main/moderators", true))()
 
@@ -876,4 +876,5 @@ rejoining = true
             end
             wait(3)
             rejoining = false
-        end
+            end
+        
